@@ -1,5 +1,6 @@
 /**
  * Markitdown Test Suite Barrel File
+ * biome-ignore-all lint/performance/noBarrelFile: barrel file
  */
 
 export { default as test001 } from "./markitdown-001";

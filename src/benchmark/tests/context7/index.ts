@@ -1,5 +1,6 @@
 /**
  * Context7 Test Suite Barrel File
+ * biome-ignore-all lint/performance/noBarrelFile: barrel file
  */
 
 export { default as test001 } from "./context7-001";

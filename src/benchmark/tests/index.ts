@@ -58,11 +58,15 @@ export async function loadAllTests(
           );
 
           for (const key of testKeys) {
-            const testExport = testModule[key as keyof typeof testModule] as {
-              TEST?: E2ETestCase;
-            };
-            if (testExport && testExport.TEST) {
-              allTests.push(testExport.TEST);
+            const testExport = testModule[key as keyof typeof testModule] as
+              | E2ETestCase
+              | { default?: E2ETestCase };
+
+            // Check if it's directly the test or has a default export
+            if ("id" in testExport && "expectedTools" in testExport) {
+              allTests.push(testExport as E2ETestCase);
+            } else if ("default" in testExport && testExport.default) {
+              allTests.push(testExport.default);
             }
           }
 
